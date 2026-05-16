@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SFI Help Desk – Christ College Irinjalakuda</title>
+  <meta name="description"
+    content="Official SFI Help Desk for Christ College Irinjalakuda. Join your department WhatsApp group for support.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red: #C8102E;
+      --red-dark: #8B0A1E;
+      --red-deep: #2A0610;
+      --gold: #F2C94C;
+      --gold-soft: #F5D76E;
+      --white: #FFFFFF;
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--red-deep);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ─── COLLEGE BG IMAGE (BLENDED) ─── */
+    .bg-college {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: url('college-bg.png') center center / cover no-repeat;
+      filter: brightness(0.25) saturate(0.3) contrast(1.1);
+      opacity: 1;
+    }
+
+    /* Color overlay on top of image */
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(74, 10, 20, 0.7) 0%, rgba(42, 6, 16, 0.55) 40%, rgba(42, 6, 16, 0.75) 100%),
+        radial-gradient(ellipse at 30% 0%, rgba(200, 16, 46, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 100%, rgba(242, 201, 76, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+
+
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particles span {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-up linear infinite;
+    }
+
+    .particles span:nth-child(1) {
+      left: 12%;
+      animation-duration: 12s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(2) {
+      left: 30%;
+      animation-duration: 15s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(3) {
+      left: 55%;
+      animation-duration: 11s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(4) {
+      left: 75%;
+      animation-duration: 14s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(5) {
+      left: 90%;
+      animation-duration: 13s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(6) {
+      left: 42%;
+      animation-duration: 16s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(7) {
+      left: 8%;
+      animation-duration: 10s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(8) {
+      left: 65%;
+      animation-duration: 13s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(9) {
+      left: 22%;
+      animation-duration: 17s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(10) {
+      left: 48%;
+      animation-duration: 11s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(11) {
+      left: 82%;
+      animation-duration: 14s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(12) {
+      left: 35%;
+      animation-duration: 12s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(13) {
+      left: 58%;
+      animation-duration: 15s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(14) {
+      left: 95%;
+      animation-duration: 10s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(15) {
+      left: 5%;
+      animation-duration: 14s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(16) {
+      left: 18%;
+      animation-duration: 11s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(17) {
+      left: 38%;
+      animation-duration: 16s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(18) {
+      left: 52%;
+      animation-duration: 13s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(19) {
+      left: 68%;
+      animation-duration: 10s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(20) {
+      left: 78%;
+      animation-duration: 15s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(21) {
+      left: 88%;
+      animation-duration: 12s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(22) {
+      left: 25%;
+      animation-duration: 11s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(23) {
+      left: 45%;
+      animation-duration: 14s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(24) {
+      left: 60%;
+      animation-duration: 16s;
+      animation-delay: 0s;
+    }
+
+    .particles span:nth-child(25) {
+      left: 15%;
+      animation-duration: 13s;
+      animation-delay: 0s;
+    }
+
+    @keyframes float-up {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.7;
+      }
+
+      90% {
+        opacity: 0.4;
+      }
+
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 0 48px;
+    }
+
+    /* ─── HERO HEADER ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 44px 28px 36px;
+      text-align: center;
+      background: linear-gradient(165deg, rgba(122, 10, 26, 0.85) 0%, rgba(200, 16, 46, 0.7) 40%, rgba(160, 18, 40, 0.8) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: none;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255, 255, 255, 0.02) 40px, rgba(255, 255, 255, 0.02) 41px);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-soft) 50%, var(--gold) 70%, transparent 100%);
+    }
+
+    /* College image peek in hero */
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: url('college-bg.png') center 30% / cover no-repeat;
+      opacity: 0.12;
+      filter: blur(2px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50px;
+      padding: 6px 18px;
+      margin-bottom: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.7);
+      }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 10px;
+      position: relative;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-college {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.3px;
+      position: relative;
+    }
+
+    /* ─── SECTION INTRO ─── */
+    .section-intro {
+      padding: 32px 28px 14px;
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .section-intro p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+    }
+
+    /* ─── CARDS ─── */
+    .cards {
+      padding: 8px 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gold);
+      border-radius: 18px 0 0 18px;
+    }
+
+    /* Shine sweep on hover */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+      transition: left 0.5s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::after {
+      left: 100%;
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(242, 201, 76, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(242, 201, 76, 0.1);
+    }
+
+    .card:active {
+      transform: scale(0.97);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(242, 201, 76, 0.25);
+    }
+
+    .card-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .card-body {
+      flex: 1;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 2px;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .card-arrow {
+      color: var(--gold);
+      font-size: 22px;
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .card-arrow {
+      transform: translateX(3px);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      margin-top: 44px;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .footer-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0.35;
+      border-radius: 2px;
+      margin: 0 auto 14px;
+    }
+
+    .footer-org {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin-bottom: 6px;
+    }
+
+    .footer p {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1.7;
+    }
+
+    /* ─── RESPONSIVE: DESKTOP ─── */
+    @media (min-width: 640px) {
+      .page {
+        max-width: 720px;
+        padding-top: 20px;
+      }
+
+      .hero {
+        border-radius: 0 0 28px 28px;
+        padding: 56px 40px 48px;
+      }
+
+      .hero-title {
+        font-size: 44px;
+      }
+
+      .hero-college {
+        font-size: 17px;
+      }
+
+      .hero-subtitle {
+        font-size: 14px;
+      }
+
+      .cards {
+        padding: 8px 28px 0;
+        gap: 16px;
+      }
+
+      .card {
+        padding: 24px;
+        border-radius: 20px;
+      }
+
+      .card-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+      }
+
+      .card-title {
+        font-size: 22px;
+      }
+
+
+    }
+
+    /* ─── SMALL PHONES ─── */
+    @media (max-width: 380px) {
+      .hero {
+        padding: 36px 18px 28px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .hero-college {
+        font-size: 13px;
+      }
+
+      .cards {
+        padding: 8px 14px 0;
+      }
+
+      .card {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .card-title {
+        font-size: 17px;
+      }
+
+      .card-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+      }
+
+      .card-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .section-intro {
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+
+    .card:nth-child(1) {
+      animation: fadeUp 0.45s 0.15s ease both;
+    }
+
+    .card:nth-child(2) {
+      animation: fadeUp 0.45s 0.22s ease both;
+    }
+
+    .card:nth-child(3) {
+      animation: fadeUp 0.45s 0.29s ease both;
+    }
+
+    .footer {
+      animation: fadeUp 0.5s 0.35s ease both;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background layers -->
+  <div class="bg-college"></div>
+  <div class="bg-overlay"></div>
+
+  <div class="particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-bg-img"></div>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span>SFI Help Desk</span>
+      </div>
+      <h1 class="hero-title">Help Desk</h1>
+      <p class="hero-college">Christ College, Irinjalakuda</p>
+      <p class="hero-subtitle">Students Federation of India &mdash; Official Support</p>
+    </header>
+
+    <!-- INTRO -->
+    <div class="section-intro">
+      <h2>Connect With Us</h2>
+      <p>Select your department below to join the official<br>SFI WhatsApp help group.</p>
+    </div>
+
+    <!-- CARDS -->
+    <div class="cards">
+
+      <!-- UG Aided -->
+      <a class="card" href="https://chat.whatsapp.com/DaGD8hoAs230qapda050dh?mode=gi_t" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.58 3.37 17.07L2 22L7.12 20.65C8.56 21.47 10.22 21.95 12 21.95C17.52 21.95 22 17.47 22 11.95C22 6.43 17.52 2 12 2Z"
+              fill="#5A0613" />
+            <path
+              d="M17.47 15.01C17.24 15.65 16.33 16.18 15.62 16.32C15.13 16.42 14.49 16.49 12.38 15.64C9.73 14.57 8.01 11.89 7.87 11.71C7.74 11.53 6.75 10.22 6.75 8.86C6.75 7.5 7.44 6.84 7.72 6.55C7.95 6.31 8.32 6.2 8.68 6.2C8.8 6.2 8.9 6.21 9.0 6.21C9.28 6.22 9.42 6.24 9.6 6.67C9.83 7.23 10.39 8.59 10.46 8.73C10.53 8.87 10.6 9.06 10.5 9.24C10.41 9.43 10.33 9.51 10.19 9.67C10.05 9.83 9.92 9.95 9.78 10.13C9.65 10.29 9.5 10.46 9.66 10.74C9.82 11.01 10.38 11.92 11.21 12.66C12.28 13.62 13.14 13.93 13.45 14.06C13.68 14.16 13.96 14.14 14.13 13.96C14.34 13.73 14.6 13.36 14.86 12.99C15.05 12.72 15.29 12.69 15.54 12.79C15.8 12.88 17.15 13.55 17.42 13.69C17.69 13.83 17.87 13.9 17.94 14.01C18.01 14.13 18.01 14.67 17.47 15.01Z"
+              fill="#5A0613" />
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-label">Undergraduate</p>
+          <p class="card-title">UG Aided</p>
+          <p class="card-desc">Join the WhatsApp group →</p>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+
+      <!-- UG Self Finance -->
+      <a class="card" href="https://chat.whatsapp.com/EfM4mPBg2dQHjyXBttAhAp?mode=gi_t" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.58 3.37 17.07L2 22L7.12 20.65C8.56 21.47 10.22 21.95 12 21.95C17.52 21.95 22 17.47 22 11.95C22 6.43 17.52 2 12 2Z"
+              fill="#5A0613" />
+            <path
+              d="M17.47 15.01C17.24 15.65 16.33 16.18 15.62 16.32C15.13 16.42 14.49 16.49 12.38 15.64C9.73 14.57 8.01 11.89 7.87 11.71C7.74 11.53 6.75 10.22 6.75 8.86C6.75 7.5 7.44 6.84 7.72 6.55C7.95 6.31 8.32 6.2 8.68 6.2C8.8 6.2 8.9 6.21 9.0 6.21C9.28 6.22 9.42 6.24 9.6 6.67C9.83 7.23 10.39 8.59 10.46 8.73C10.53 8.87 10.6 9.06 10.5 9.24C10.41 9.43 10.33 9.51 10.19 9.67C10.05 9.83 9.92 9.95 9.78 10.13C9.65 10.29 9.5 10.46 9.66 10.74C9.82 11.01 10.38 11.92 11.21 12.66C12.28 13.62 13.14 13.93 13.45 14.06C13.68 14.16 13.96 14.14 14.13 13.96C14.34 13.73 14.6 13.36 14.86 12.99C15.05 12.72 15.29 12.69 15.54 12.79C15.8 12.88 17.15 13.55 17.42 13.69C17.69 13.83 17.87 13.9 17.94 14.01C18.01 14.13 18.01 14.67 17.47 15.01Z"
+              fill="#5A0613" />
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-label">Undergraduate</p>
+          <p class="card-title">UG Self Finance</p>
+          <p class="card-desc">Join the WhatsApp group →</p>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+
+      <!-- PG -->
+      <a class="card" href="https://chat.whatsapp.com/KCTD6jf1Bth093yUNY5zuR?mode=gi_t" target="_blank" rel="noopener">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.58 3.37 17.07L2 22L7.12 20.65C8.56 21.47 10.22 21.95 12 21.95C17.52 21.95 22 17.47 22 11.95C22 6.43 17.52 2 12 2Z"
+              fill="#5A0613" />
+            <path
+              d="M17.47 15.01C17.24 15.65 16.33 16.18 15.62 16.32C15.13 16.42 14.49 16.49 12.38 15.64C9.73 14.57 8.01 11.89 7.87 11.71C7.74 11.53 6.75 10.22 6.75 8.86C6.75 7.5 7.44 6.84 7.72 6.55C7.95 6.31 8.32 6.2 8.68 6.2C8.8 6.2 8.9 6.21 9.0 6.21C9.28 6.22 9.42 6.24 9.6 6.67C9.83 7.23 10.39 8.59 10.46 8.73C10.53 8.87 10.6 9.06 10.5 9.24C10.41 9.43 10.33 9.51 10.19 9.67C10.05 9.83 9.92 9.95 9.78 10.13C9.65 10.29 9.5 10.46 9.66 10.74C9.82 11.01 10.38 11.92 11.21 12.66C12.28 13.62 13.14 13.93 13.45 14.06C13.68 14.16 13.96 14.14 14.13 13.96C14.34 13.73 14.6 13.36 14.86 12.99C15.05 12.72 15.29 12.69 15.54 12.79C15.8 12.88 17.15 13.55 17.42 13.69C17.69 13.83 17.87 13.9 17.94 14.01C18.01 14.13 18.01 14.67 17.47 15.01Z"
+              fill="#5A0613" />
+          </svg>
+        </div>
+        <div class="card-body">
+          <p class="card-label">Postgraduate</p>
+          <p class="card-title">PG</p>
+          <p class="card-desc">Join the WhatsApp group →</p>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-line"></div>
+      <p class="footer-org">Students Federation of India</p>
+      <p>Christ College, Irinjalakuda<br>Thrissur, Kerala</p>
+    </footer>
+
+  </div>
+</body>
+
+</html>
